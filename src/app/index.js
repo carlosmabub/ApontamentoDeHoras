@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import Dropdown from "../components/DropDown";
-import ConfirmButton from "../components/ConfirmButton";
+import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
 
 const data = [
@@ -12,12 +13,13 @@ const data = [
 export default function Index() {
   const [dropDownSelected, setDropDownSelected] = useState("");
   return (
-    <View
+    <SafeAreaView
       style={{
         ...styles.container,
         justifyContent: "space-between",
       }}
     >
+      <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
       <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
@@ -33,13 +35,9 @@ export default function Index() {
       </View>
 
       <View style={styles.footer}>
-        <ConfirmButton
-          value={dropDownSelected}
-          placeholder={"Continuar"}
-          style={styles.button}
-        />
+        <NextButton placeholder={"Continuar"} style={styles.button} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    backgroundColor: "#FDFEFF",
+    backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -66,22 +64,27 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#FDFEFF",
   },
   footer: {
     width: "100%",
     height: 100,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#FDFEFF",
   },
   logo: {
     width: 75,
     height: 75,
   },
   button: {
-    padding: 20,
-    color: "white",
-    borderRadius: 10,
-    width: "50%",
+    color: "red",
+    backgroundColor: "blue",
+    width: 150,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 6,
   },
   dropdown: {
     width: "90%",
