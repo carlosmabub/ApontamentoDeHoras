@@ -1,7 +1,7 @@
 {
   "name": "apontamentodehoras",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -9,13 +9,23 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "8.3.0",
     "expo": "~53.0.12",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
-    "react-native": "0.79.4"
+    "react-native": "0.79.4",
+    "react-native-calendars": "^1.1312.1",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-dropdown-select-list": "^2.0.5",
+    "expo-router": "~5.1.0",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "expo-linking": "~7.1.5",
+    "expo-constants": "~17.1.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "prettier": "^3.6.0"
   },
   "private": true
 }
