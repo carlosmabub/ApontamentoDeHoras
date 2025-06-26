@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Modal, FlatList, Image } from "react-native";
+import { StyleSheet, Text, View, Image, StatusBar } from "react-native";
 import Dropdown from "../components/DropDown/index";
 import Calendar from "../components/Calendar/index";
-import ConfirmButton from "../components/ConfirmButton/index";
+import NextButton from "../components/NextButton";
+import BackButton from "../components/BackButton";
 import logoImage from "../assets/logoImage.jpg";
 const colabData = [
   { key: "1", value: "Fulano" },
@@ -18,87 +19,114 @@ const equipData = [
   { key: "2", value: "55" },
 ];
 
-const funcionarios = [
-  { id: "1", nome: "João" },
-  { id: "2", nome: "Maria" },
-  { id: "3", nome: "Carlos" },
-];
-
 export default function ColaboradorScreen() {
   const [colabDropdownSelected, setColabDropDownSelected] = useState("");
   const [equipDropDownSelected, setEquipDropDownSelected] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
   return (
     <View style={styles.container}>
-      <View style={{ ...styles.box }}>
+      <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
+      <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
+        <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
       <View
         style={{
-          ...styles.box,
+          ...styles.body,
           backgroundColor: "#FFF",
-          flex: 8,
+          flex: 1,
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <Text style={{ marginTop: 50, margin: 20, fontSize: 16 }}>
-          Selecione a data:
-        </Text>
+        <Text style={{ margin: 15, fontSize: 16 }}>Selecione a data:</Text>
         <Calendar margin={6} />
-        <Text style={{ marginTop: "", margin: 20, fontSize: 16 }}>
-          Selecione o colaborador e o equipamento:
+        <Text style={{ margin: 15, fontSize: 16 }}>
+          Selecione o colaborador e a atividade:
         </Text>
         <Dropdown
           setValue={setColabDropDownSelected}
           data={colabData}
           placeholder={"Selecione o colaborador"}
-          margin={6}
+          style={styles.dropdown}
           zIndex={3}
         />
         <Dropdown
           setValue={setEquipDropDownSelected}
           data={equipData}
-          placeholder={"Selecione o Equipamento"}
-          margin={6}
+          placeholder={"Selecione a Atividade"}
+          style={styles.dropdown}
           zIndex={2}
         />
       </View>
       <View
         style={{
-          ...styles.box,
-          flex: 3,
-          backgroundColor: "#FFF",
+          ...styles.footer,
+          backgroundColor: "#FDFEFF",
           flexDirection: "row",
           justifyContent: "space-around",
-          marginBottom: 10,
         }}
       >
-        <ConfirmButton placeholder="Voltar" />
-        <ConfirmButton placeholder="Continuar" />
+        <BackButton placeholder={"Voltar"} style={styles.button} />
+        <NextButton
+          placeholder={"Continuar"}
+          style={styles.button}
+          route={""}
+        />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFF",
+  button: {
+    backgroundColor: "#FDFEFF",
+    borderColor: "black",
+    borderWidth: 2,
+    width: 150,
+    height: 50,
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 60,
-    overflow: "visible",
-  },
-  box: {
-    width: "100%",
-    alignItems: "center",
-    backgroundColor: "#fff",
+    borderRadius: 6,
   },
   logo: {
     width: 75,
     height: 75,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#FDFEFF",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "space-between",
+  },
+  body: {
+    flex: 1,
+    backgroundColor: "#FDFEFF",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  text: {
+    fontSize: 18,
+    fontStyle: "italic",
+  },
+  header: {
+    width: "100%",
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FDFEFF",
+  },
+  footer: {
+    width: "100%",
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FDFEFF",
+  },
+  dropdown: {
+    width: "90%",
+    margin: 6,
   },
 });

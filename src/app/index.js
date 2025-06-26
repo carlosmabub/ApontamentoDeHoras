@@ -35,7 +35,11 @@ export default function Index() {
       </View>
 
       <View style={styles.footer}>
-        <NextButton placeholder={"Continuar"} style={styles.button} />
+        <NextButton
+          placeholder={"Continuar"}
+          style={styles.button}
+          route={"/colaborador"}
+        />
       </View>
     </SafeAreaView>
   );
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: "#FDFEFF",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -78,8 +82,9 @@ const styles = StyleSheet.create({
     height: 75,
   },
   button: {
-    color: "red",
-    backgroundColor: "blue",
+    backgroundColor: "#FDFEFF",
+    borderColor: "black",
+    borderWidth: 2,
     width: 150,
     height: 50,
     alignItems: "center",
