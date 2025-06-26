@@ -71,7 +71,7 @@ export default function ColaboradorScreen() {
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={""}
+          route={"/hoursAppointment"}
         />
       </View>
     </View>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#FDFEFF",
     borderColor: "black",
-    borderWidth: 2,
+    borderWidth: 1,
     width: 150,
     height: 50,
     alignItems: "center",

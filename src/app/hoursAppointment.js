@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import BackButton from "../components/BackButton";
 import Dropdown from "../components/DropDown";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
@@ -25,20 +26,21 @@ export default function Index() {
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
-      <View style={styles.body}>
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione o lider"}
-          style={styles.dropdown}
-        />
-      </View>
+      <View style={{ ...styles.body, backgroundColor: "red" }}></View>
 
-      <View style={styles.footer}>
+      <View
+        style={{
+          ...styles.footer,
+          backgroundColor: "#FDFEFF",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <BackButton placeholder={"Voltar"} style={styles.button} />
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/colaborador"}
+          route={"/hoursAppointment"}
         />
       </View>
     </SafeAreaView>
