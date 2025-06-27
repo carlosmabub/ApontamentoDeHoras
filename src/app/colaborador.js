@@ -30,18 +30,10 @@ export default function ColaboradorScreen() {
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
-      <View
-        style={{
-          ...styles.body,
-          backgroundColor: "#FFF",
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={{ margin: 15, fontSize: 16 }}>Selecione a data:</Text>
+      <View style={styles.body}>
+        <Text style={{ margin: 15, fontSize: 18 }}>Selecione a data:</Text>
         <Calendar margin={6} />
-        <Text style={{ margin: 15, fontSize: 16 }}>
+        <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
           Selecione o colaborador e a atividade:
         </Text>
         <Dropdown
@@ -101,10 +93,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   body: {
-    flex: 1,
     backgroundColor: "#FDFEFF",
     alignItems: "center",
-    justifyContent: "center",
     width: "100%",
   },
   text: {
@@ -127,6 +117,6 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     width: "90%",
-    margin: 6,
+    margin: 30,
   },
 });

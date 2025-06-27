@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../components/BackButton";
+import TimePicker from "../components/TimePicker";
 import Dropdown from "../components/DropDown";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
@@ -14,28 +15,20 @@ const data = [
 export default function Index() {
   const [dropDownSelected, setDropDownSelected] = useState("");
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={{
+        ...styles.container,
+        justifyContent: "space-between",
+      }}
+    >
+      <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
       <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
       <View style={styles.body}>
-        <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
-          Selecione a Operação e o Equipamento:
-        </Text>
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione a Operação"}
-          style={styles.dropdown}
-        />
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione o Equipamento - OP"}
-          style={styles.dropdown}
-        />
+        <TimePicker />
       </View>
 
       <View
@@ -50,10 +43,10 @@ export default function Index() {
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/hours"}
+          route={"/hoursAppointment"}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
