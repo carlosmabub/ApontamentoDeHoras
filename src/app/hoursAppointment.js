@@ -29,12 +29,14 @@ export default function Index() {
           data={data}
           placeholder={"Selecione a Operação"}
           style={styles.dropdown}
+          zIndex={3}
         />
         <Dropdown
           setValue={setDropDownSelected}
           data={data}
           placeholder={"Selecione o Equipamento - OP"}
           style={styles.dropdown}
+          zIndex={2}
         />
       </View>
 

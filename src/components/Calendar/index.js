@@ -5,7 +5,6 @@ export default function Calendar() {
   return (
     <View
       style={{
-        marginBottom: 40,
         width: "100%",
         alignItems: "center",
       }}

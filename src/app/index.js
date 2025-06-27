@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import Calendar from "../components/Calendar/index";
 import Dropdown from "../components/DropDown";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
@@ -26,12 +27,26 @@ export default function Index() {
       </View>
 
       <View style={styles.body}>
+        <Text style={{ marginLeft: "-55%", marginBottom: -20 }}>
+          Selecione o Lider:
+        </Text>
         <Dropdown
           setValue={setDropDownSelected}
           data={data}
           placeholder={"Selecione o lider"}
           style={styles.dropdown}
         />
+        <Text style={{ marginLeft: "-45%", marginBottom: -20 }}>
+          Selecione o Colaborador:
+        </Text>
+        <Dropdown
+          setValue={setDropDownSelected}
+          data={data}
+          placeholder={"Selecione o Colaborador"}
+          style={styles.dropdown}
+        />
+        <Text style={{ textAlign: "center" }}>Selecione a data:</Text>
+        <Calendar />
       </View>
 
       <View style={styles.footer}>
@@ -93,5 +108,6 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     width: "90%",
+    margin: 30,
   },
 });

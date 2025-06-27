@@ -29,20 +29,35 @@ export default function ColaboradorScreen() {
         <Image style={styles.logo} source={logoImage} />
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
-
-      <View style={styles.body}>
-        <Text style={{ margin: 15, fontSize: 18 }}>Selecione a data:</Text>
-        <Calendar margin={6} />
-        <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
-          Selecione o colaborador e a atividade:
+      <View
+        style={{
+          ...styles.body,
+          borderColor: "red",
+          borderWidth: 3,
+          flex: 2,
+          padding: 20,
+        }}
+      >
+        <Text style={{ fontSize: 20 }}> ___Atividade_____________Hora__</Text>
+        <Text style={{ fontSize: 20 }}> </Text>
+        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
+        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
+        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
+        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
+        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
+      </View>
+      <View style={{ ...styles.body, justifyContent: "center" }}>
+        <Text
+          style={{
+            margin: 15,
+            marginBottom: -15,
+            marginLeft: "-40%",
+            fontSize: 18,
+          }}
+        >
+          Selecione a atividade:
         </Text>
-        <Dropdown
-          setValue={setColabDropDownSelected}
-          data={colabData}
-          placeholder={"Selecione o colaborador"}
-          style={styles.dropdown}
-          zIndex={3}
-        />
+
         <Dropdown
           setValue={setEquipDropDownSelected}
           data={equipData}
@@ -59,7 +74,7 @@ export default function ColaboradorScreen() {
           justifyContent: "space-around",
         }}
       >
-        <BackButton placeholder={"Voltar"} style={styles.button} />
+        <BackButton placeholder={"Concluir"} style={styles.button} />
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
@@ -94,6 +109,7 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: "#FDFEFF",
+    flex: 1,
     alignItems: "center",
     width: "100%",
   },

@@ -13,7 +13,6 @@ const data = [
 ];
 
 export default function Index() {
-  const [dropDownSelected, setDropDownSelected] = useState("");
   return (
     <SafeAreaView
       style={{
@@ -27,8 +26,13 @@ export default function Index() {
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
-      <View style={styles.body}>
+      <View style={{ ...styles.body, flex: 1 }}>
         <TimePicker />
+      </View>
+      <View
+        style={{ ...styles.body, flex: 2, borderColor: "red", borderWidth: 3 }}
+      >
+        <Text>Campo de observação</Text>
       </View>
 
       <View
@@ -43,7 +47,7 @@ export default function Index() {
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/hoursAppointment"}
+          route={"/index"}
         />
       </View>
     </SafeAreaView>
