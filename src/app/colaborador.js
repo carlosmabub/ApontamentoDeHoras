@@ -1,42 +1,16 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image, StatusBar } from "react-native";
-import Dropdown from "../components/DropDown/index";
-import Calendar from "../components/Calendar/index";
 import NextButton from "../components/NextButton";
 import BackButton from "../components/BackButton";
 import logoImage from "../assets/logoImage.jpg";
 import ModalSelector from "../components/ModalSelector";
-import { useLocalSearchParams } from "expo-router";
-const colabData = [
-  {
-    key: "1",
-    value: "Fulano",
-  },
-  {
-    key: "2",
-    value: "Ciclano",
-  },
-  {
-    key: "1",
-    value: "Beltrano",
-  },
-  {
-    key: "2",
-    value: "Ciclano",
-  },
-];
+import { useApontamentoStore } from "../store/useApontamentoStore";
 
-const equipData = [
-  { key: "1", value: "44" },
-  { key: "2", value: "55" },
-  { key: "1", value: "44" },
-  { key: "2", value: "55" },
-];
+const atividades = ["Produção", "Retrabalho", "DDS"];
 
 export default function ColaboradorScreen() {
-  const [colabDropdownSelected, setColabDropDownSelected] = useState("");
-  const [equipDropDownSelected, setEquipDropDownSelected] = useState("");
-  const { lider, colaborador } = useLocalSearchParams();
+  const [atividadeSelecionada, setAtividadeSelecionada] = useState(null);
+  const { adicionarCampo } = useApontamentoStore();
   return (
     <View style={styles.container}>
       <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
@@ -53,7 +27,7 @@ export default function ColaboradorScreen() {
           padding: 20,
         }}
       >
-        <Text style={styles.text}>{colaborador}</Text>
+        <Text style={styles.text}></Text>
       </View>
       <View
         style={{
@@ -61,7 +35,12 @@ export default function ColaboradorScreen() {
           justifyContent: "center",
         }}
       >
-        <ModalSelector text={"Selecione o lider:"} />
+        <ModalSelector
+          setValue={setAtividadeSelecionada}
+          data={atividades}
+          value={atividadeSelecionada}
+          text={"Selecione a Atividade:"}
+        />
       </View>
       <View
         style={{
@@ -71,11 +50,20 @@ export default function ColaboradorScreen() {
           justifyContent: "space-around",
         }}
       >
-        <BackButton placeholder={"Concluir"} style={styles.button} />
+        <BackButton
+          placeholder={"Concluir"}
+          style={styles.button}
+          route={"/index"}
+        />
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
           route={"/hoursAppointment"}
+          onBeforeNavigate={() =>
+            adicionarCampo({
+              atividade: atividadeSelecionada,
+            })
+          }
         />
       </View>
     </View>

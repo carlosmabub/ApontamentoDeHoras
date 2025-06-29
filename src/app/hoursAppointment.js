@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Image } from "react-native";
 import BackButton from "../components/BackButton";
-import Dropdown from "../components/DropDown";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
 import ModalSelector from "../components/ModalSelector";
+import { useApontamentoStore } from "../store/useApontamentoStore";
 
-const data = [
-  { key: "1", value: "Fulano" },
-  { key: "2", value: "Ciclano" },
-];
+const operacao = ["Solda", "Mecanica", "Pintura"];
+
+const equipamento = ["GT440", "GT125", "FT200DF"];
 
 export default function Index() {
-  const [dropDownSelected, setDropDownSelected] = useState("");
+  const [operacaoSelected, setOperacaoSelected] = useState("");
+  const [equipamentoSelected, setEquipamentoSelected] = useState("");
+  const { adicionarCampo } = useApontamentoStore();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -22,14 +22,18 @@ export default function Index() {
       </View>
 
       <View style={styles.body}>
-        <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
-          Selecione a Operação:
-        </Text>
-        <ModalSelector />
-        <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
-          Selecione o Equipamento:
-        </Text>
-        <ModalSelector />
+        <ModalSelector
+          setValue={setOperacaoSelected}
+          data={operacao}
+          value={operacaoSelected}
+          text={"Selecione a Operação:"}
+        />
+        <ModalSelector
+          setValue={setEquipamentoSelected}
+          data={equipamento}
+          value={equipamentoSelected}
+          text={"Selecione o Equipamento:"}
+        />
       </View>
 
       <View
@@ -45,6 +49,12 @@ export default function Index() {
           placeholder={"Continuar"}
           style={styles.button}
           route={"/hours"}
+          onBeforeNavigate={() =>
+            adicionarCampo({
+              operacao: operacaoSelected,
+              equipamento: equipamentoSelected,
+            })
+          }
         />
       </View>
     </View>

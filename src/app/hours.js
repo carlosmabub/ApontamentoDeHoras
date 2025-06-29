@@ -1,36 +1,39 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Image } from "react-native";
 import BackButton from "../components/BackButton";
-import TimePicker from "../components/TimePicker";
 import TimeInput from "../components/TimeInput";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
-
-const data = [
-  { key: "1", value: "Fulano" },
-  { key: "2", value: "Ciclano" },
-];
+import {
+  useApontamentoStore,
+  concluirApontamento,
+} from "../store/useApontamentoStore";
 
 export default function Index() {
+  const [inputValue, setInputValue] = useState("");
+  const { adicionarCampo } = useApontamentoStore();
   return (
-    <SafeAreaView
+    <View
       style={{
         ...styles.container,
         justifyContent: "space-between",
       }}
     >
-      <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
       <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
       <View style={{ ...styles.body, flex: 1 }}>
-        <TimeInput />
+        <TimeInput inputValue={inputValue} setInputValue={setInputValue} />
       </View>
       <View
-        style={{ ...styles.body, flex: 2, borderColor: "red", borderWidth: 3 }}
+        style={{
+          ...styles.body,
+          flex: 2,
+          borderColor: "red",
+          borderWidth: 3,
+        }}
       >
         <Text>Campo de observação</Text>
       </View>
@@ -47,10 +50,16 @@ export default function Index() {
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/index"}
+          route={"/colaborador"}
+          onBeforeNavigate={() => {
+            adicionarCampo({
+              time: inputValue,
+            });
+            concluirApontamento();
+          }}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

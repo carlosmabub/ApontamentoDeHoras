@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 import Calendar from "../components/Calendar/index";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
 import ModalSelector from "../components/ModalSelector";
+import { useApontamentoStore } from "../store/useApontamentoStore";
 
 const funcionarios = [
   "Ana Clara",
@@ -20,7 +21,8 @@ const funcionarios = [
 export default function Index() {
   const [liderSelecionado, setLiderSelecionado] = useState(null);
   const [colaboradorSelecionado, setColaboradorSelecionado] = useState(null);
-  const navigation = useNavigation();
+  const router = useRouter();
+  const { adicionarCampo } = useApontamentoStore();
   return (
     <View
       style={{
@@ -55,10 +57,12 @@ export default function Index() {
           placeholder={"Continuar"}
           style={styles.button}
           route="/colaborador"
-          params={{
-            lider: liderSelecionado,
-            colaborador: colaboradorSelecionado,
-          }}
+          onBeforeNavigate={() =>
+            adicionarCampo({
+              lider: liderSelecionado,
+              colaborador: colaboradorSelecionado,
+            })
+          }
         />
       </View>
     </View>

@@ -9,12 +9,10 @@ import {
   Pressable,
 } from "react-native";
 
-export default function TimeInput() {
-  const [inputValue, setInputValue] = useState("");
+export default function TimeInput({ inputValue, setInputValue }) {
   const [modalVisible, setModalVisible] = useState(false);
-
   const formatTime = (value) => {
-    const clean = value.replace(/\D/g, "").slice(-4); // mantém no máximo 4 dígitos
+    const clean = value.replace(/\D/g, "").slice(-4);
     const padded = clean.padStart(4, "0");
     const minutes = padded.slice(-2);
     const hours = padded.slice(0, padded.length - 2);
