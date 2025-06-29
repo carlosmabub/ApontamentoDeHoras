@@ -1,4 +1,4 @@
-import { Text, Pressable, onPress } from "react-native";
+import { Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { useApontamentoStore } from "../../store/useApontamentoStore";
 
@@ -9,12 +9,12 @@ export default function NextButton({
   route,
 }) {
   const router = useRouter();
+  const { apontamentos, apontamentoAtual } = useApontamentoStore();
 
   const handlePres = () => {
     if (onBeforeNavigate) {
       onBeforeNavigate();
-      console.log(useApontamentoStore.apontamentos);
-      console.log(useApontamentoStore.apontamentoAtual);
+      console.log("Apontamento: ", apontamentos);
     }
     if (route) {
       router.push(route);

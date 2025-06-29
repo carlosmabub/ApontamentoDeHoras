@@ -4,14 +4,12 @@ import BackButton from "../components/BackButton";
 import TimeInput from "../components/TimeInput";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
-import {
-  useApontamentoStore,
-  concluirApontamento,
-} from "../store/useApontamentoStore";
+import { useApontamentoStore } from "../store/useApontamentoStore";
 
 export default function Index() {
   const [inputValue, setInputValue] = useState("");
-  const { adicionarCampo } = useApontamentoStore();
+  const { adicionarCampo, concluirApontamento } = useApontamentoStore();
+
   return (
     <View
       style={{

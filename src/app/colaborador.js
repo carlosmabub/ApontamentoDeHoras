@@ -10,7 +10,7 @@ const atividades = ["Produção", "Retrabalho", "DDS"];
 
 export default function ColaboradorScreen() {
   const [atividadeSelecionada, setAtividadeSelecionada] = useState(null);
-  const { adicionarCampo } = useApontamentoStore();
+  const { adicionarCampo, apontamentos } = useApontamentoStore();
   return (
     <View style={styles.container}>
       <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
@@ -21,13 +21,49 @@ export default function ColaboradorScreen() {
       <View
         style={{
           ...styles.body,
-          borderColor: "red",
-          borderWidth: 3,
           flex: 2,
           padding: 20,
+          gap: 10,
         }}
       >
-        <Text style={styles.text}></Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+            padding: 10,
+            borderRadius: 6,
+          }}
+        >
+          <Text style={{ ...styles.text, fontWeight: "bold" }}>Atividade</Text>
+          <Text style={{ ...styles.text, fontWeight: "bold" }}>Tempo</Text>
+        </View>
+
+        {apontamentos == [] && (
+          <View>
+            <Text>Lista vazia</Text>
+          </View>
+        )}
+
+        {apontamentos.map((item, index) => (
+          <View key={index}>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+                padding: 10,
+                backgroundColor: "#d3d3d3",
+                borderRadius: 6,
+              }}
+            >
+              <Text style={styles.text}>{item.atividade}</Text>
+              <Text style={styles.text}>{item.time}</Text>
+            </View>
+          </View>
+        ))}
       </View>
       <View
         style={{

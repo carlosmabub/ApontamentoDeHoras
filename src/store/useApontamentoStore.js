@@ -11,9 +11,27 @@ export const useApontamentoStore = create((set) => ({
       };
     }),
   concluirApontamento: () =>
-    set((state) => ({
-      apontamentos: [...state.apontamentos, state.apontamentoAtual],
-      apontamentoAtual: {}, // limpa o rascunho
-    })),
+    set((state) => {
+      const apontamentoValidado = {
+        colaborador: state.apontamentoAtual.colaborador,
+        lider: state.apontamentoAtual.lider,
+        atividade: state.apontamentoAtual.atividade,
+        time: state.apontamentoAtual.time,
+        equipamento: "",
+        operacao: "",
+      };
+      if (
+        state.apontamentoAtual.atividade == "180" ||
+        state.apontamentoAtual.atividade == "360"
+      ) {
+        apontamentoValidado.equipamento = state.apontamentoAtual.equipamento;
+        apontamentoValidado.operacao = state.apontamentoAtual.operacao;
+      }
+
+      return {
+        apontamentos: [...state.apontamentos, apontamentoValidado],
+        apontamentoAtual: {},
+      };
+    }),
   limparApontamentos: () => set({ apontamentos: [], apontamentoAtual: {} }),
 }));

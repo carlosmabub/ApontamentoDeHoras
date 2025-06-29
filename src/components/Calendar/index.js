@@ -4,16 +4,16 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 export default function Calendar() {
   return (
     <View
-    // style={{
-    //   width: "100%",
-    //   alignItems: "center",
-    // }}
+      style={{
+        width: "100%",
+        alignItems: "center",
+      }}
     >
-      <DateTimePicker
+      {/* <DateTimePicker
         value={new Date()}
         fullscreen={true}
         positiveButton={{ label: "OK", textColor: "green" }}
-      />
+      /> */}
     </View>
   );
 }
