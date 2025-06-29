@@ -4,10 +4,10 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 export default function Calendar() {
   return (
     <View
-      style={{
-        width: "100%",
-        alignItems: "center",
-      }}
+    // style={{
+    //   width: "100%",
+    //   alignItems: "center",
+    // }}
     >
       <DateTimePicker
         value={new Date()}
@@ -18,8 +18,4 @@ export default function Calendar() {
   );
 }
 
-const styles = StyleSheet.create({
-  dateComponente: {
-    width: 350,
-  },
-});
+const styles = StyleSheet.create({});

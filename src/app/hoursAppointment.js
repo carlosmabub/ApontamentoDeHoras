@@ -5,6 +5,7 @@ import BackButton from "../components/BackButton";
 import Dropdown from "../components/DropDown";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
+import ModalSelector from "../components/ModalSelector";
 
 const data = [
   { key: "1", value: "Fulano" },
@@ -22,22 +23,13 @@ export default function Index() {
 
       <View style={styles.body}>
         <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
-          Selecione a Operação e o Equipamento:
+          Selecione a Operação:
         </Text>
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione a Operação"}
-          style={styles.dropdown}
-          zIndex={3}
-        />
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione o Equipamento - OP"}
-          style={styles.dropdown}
-          zIndex={2}
-        />
+        <ModalSelector />
+        <Text style={{ margin: 15, marginBottom: -15, fontSize: 18 }}>
+          Selecione o Equipamento:
+        </Text>
+        <ModalSelector />
       </View>
 
       <View

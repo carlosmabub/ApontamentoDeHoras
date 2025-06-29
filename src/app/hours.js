@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../components/BackButton";
 import TimePicker from "../components/TimePicker";
-import Dropdown from "../components/DropDown";
+import TimeInput from "../components/TimeInput";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
 
@@ -27,7 +27,7 @@ export default function Index() {
       </View>
 
       <View style={{ ...styles.body, flex: 1 }}>
-        <TimePicker />
+        <TimeInput />
       </View>
       <View
         style={{ ...styles.body, flex: 2, borderColor: "red", borderWidth: 3 }}

@@ -5,11 +5,25 @@ import Calendar from "../components/Calendar/index";
 import NextButton from "../components/NextButton";
 import BackButton from "../components/BackButton";
 import logoImage from "../assets/logoImage.jpg";
+import ModalSelector from "../components/ModalSelector";
+import { useLocalSearchParams } from "expo-router";
 const colabData = [
-  { key: "1", value: "Fulano" },
-  { key: "2", value: "Ciclano" },
-  { key: "1", value: "Beltrano" },
-  { key: "2", value: "Ciclano" },
+  {
+    key: "1",
+    value: "Fulano",
+  },
+  {
+    key: "2",
+    value: "Ciclano",
+  },
+  {
+    key: "1",
+    value: "Beltrano",
+  },
+  {
+    key: "2",
+    value: "Ciclano",
+  },
 ];
 
 const equipData = [
@@ -22,12 +36,13 @@ const equipData = [
 export default function ColaboradorScreen() {
   const [colabDropdownSelected, setColabDropDownSelected] = useState("");
   const [equipDropDownSelected, setEquipDropDownSelected] = useState("");
+  const { lider, colaborador } = useLocalSearchParams();
   return (
     <View style={styles.container}>
       <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
       <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
-        <Text style={styles.text}>Sistema de apontamento de horas</Text>
+        <Text style={styles.text}> Sistema de apontamento de horas </Text>
       </View>
       <View
         style={{
@@ -38,33 +53,15 @@ export default function ColaboradorScreen() {
           padding: 20,
         }}
       >
-        <Text style={{ fontSize: 20 }}> ___Atividade_____________Hora__</Text>
-        <Text style={{ fontSize: 20 }}> </Text>
-        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
-        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
-        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
-        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
-        <Text style={{ fontSize: 20 }}> ___Apoio sgt_____________00:15__</Text>
+        <Text style={styles.text}>{colaborador}</Text>
       </View>
-      <View style={{ ...styles.body, justifyContent: "center" }}>
-        <Text
-          style={{
-            margin: 15,
-            marginBottom: -15,
-            marginLeft: "-40%",
-            fontSize: 18,
-          }}
-        >
-          Selecione a atividade:
-        </Text>
-
-        <Dropdown
-          setValue={setEquipDropDownSelected}
-          data={equipData}
-          placeholder={"Selecione a Atividade"}
-          style={styles.dropdown}
-          zIndex={2}
-        />
+      <View
+        style={{
+          ...styles.body,
+          justifyContent: "center",
+        }}
+      >
+        <ModalSelector text={"Selecione o lider:"} />
       </View>
       <View
         style={{

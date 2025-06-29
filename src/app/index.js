@@ -1,49 +1,50 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Calendar from "../components/Calendar/index";
-import Dropdown from "../components/DropDown";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
+import ModalSelector from "../components/ModalSelector";
 
-const data = [
-  { key: "1", value: "Fulano" },
-  { key: "2", value: "Ciclano" },
+const funcionarios = [
+  "Ana Clara",
+  "Bruno Souza",
+  "Carlos Silva",
+  "Daniela Lima",
+  "Eduardo Gomes",
+  "Fernanda Rocha",
+  "Gabriel Nunes",
+  "Helena Costa",
 ];
 
 export default function Index() {
-  const [dropDownSelected, setDropDownSelected] = useState("");
+  const [liderSelecionado, setLiderSelecionado] = useState(null);
+  const [colaboradorSelecionado, setColaboradorSelecionado] = useState(null);
+  const navigation = useNavigation();
   return (
-    <SafeAreaView
+    <View
       style={{
         ...styles.container,
         justifyContent: "space-between",
       }}
     >
-      <StatusBar style="dark" backgroundColor="#FDFEFF" translucent={false} />
       <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
       <View style={styles.body}>
-        <Text style={{ marginLeft: "-55%", marginBottom: -20 }}>
-          Selecione o Lider:
-        </Text>
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione o lider"}
-          style={styles.dropdown}
+        <ModalSelector
+          setValue={setLiderSelecionado}
+          data={funcionarios}
+          value={liderSelecionado}
+          text={"Selecione o lider:"}
         />
-        <Text style={{ marginLeft: "-45%", marginBottom: -20 }}>
-          Selecione o Colaborador:
-        </Text>
-        <Dropdown
-          setValue={setDropDownSelected}
-          data={data}
-          placeholder={"Selecione o Colaborador"}
-          style={styles.dropdown}
+        <ModalSelector
+          setValue={setColaboradorSelecionado}
+          data={funcionarios}
+          value={colaboradorSelecionado}
+          text={"Selecione o Colaborador:"}
         />
         <Text style={{ textAlign: "center" }}>Selecione a data:</Text>
         <Calendar />
@@ -53,10 +54,14 @@ export default function Index() {
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/colaborador"}
+          route="/colaborador"
+          params={{
+            lider: liderSelecionado,
+            colaborador: colaboradorSelecionado,
+          }}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
