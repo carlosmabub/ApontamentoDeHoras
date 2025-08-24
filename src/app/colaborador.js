@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image, StatusBar } from "react-native";
 import NextButton from "../components/NextButton";
-import BackButton from "../components/BackButton";
+import ConfirmButton from "../components/ConfirmButton";
 import logoImage from "../assets/logoImage.jpg";
 import ModalSelector from "../components/ModalSelector";
 import { useApontamentoStore } from "../store/useApontamentoStore";
@@ -86,7 +86,7 @@ export default function ColaboradorScreen() {
           justifyContent: "space-around",
         }}
       >
-        <BackButton
+        <ConfirmButton
           placeholder={"Concluir"}
           style={styles.button}
           route={"/index"}

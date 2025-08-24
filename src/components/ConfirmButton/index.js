@@ -1,9 +1,11 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { Text, Pressable } from "react-native";
+import { useRouter } from "expo-router";
 
-export default function MyButton({ placeholder, changeState, style }) {
+export default function BackButton({ placeholder, style }) {
+  const router = useRouter();
   return (
-    <TouchableOpacity style={[style]} onPress={changeState}>
+    <Pressable style={style} onPress={() => router.push("/")}>
       <Text style={{ fontSize: 18, textAlign: "center" }}>{placeholder}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
