@@ -1,27 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useRouter } from "expo-router";
-import Calendar from "../components/Calendar/index";
+import BackButton from "../components/BackButton";
+import TimeInput from "../components/TimeInput";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
-import ModalSelector from "../components/ModalSelector";
 import { useApontamentoStore } from "../store/useApontamentoStore";
 
-const funcionarios = [
-  "Ana Clara",
-  "Bruno Souza",
-  "Carlos Silva",
-  "Daniela Lima",
-  "Eduardo Gomes",
-  "Fernanda Rocha",
-  "Gabriel Nunes",
-  "Helena Costa",
-];
-
 export default function Index() {
-  const [liderSelecionado, setLiderSelecionado] = useState(null);
-  const router = useRouter();
-  const { adicionarCampo } = useApontamentoStore();
+  const [inputValue, setInputValue] = useState("");
+  const { adicionarCampo, concluirApontamento } = useApontamentoStore();
+
   return (
     <View
       style={{
@@ -34,25 +22,39 @@ export default function Index() {
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
-      <View style={styles.body}>
-        <ModalSelector
-          setValue={setLiderSelecionado}
-          data={funcionarios}
-          value={liderSelecionado}
-          text={"Selecione o lider:"}
-        />
+      <View style={{ ...styles.body, flex: 1 }}>
+        <TimeInput inputValue={inputValue} setInputValue={setInputValue} />
+      </View>
+      <View
+        style={{
+          ...styles.body,
+          flex: 2,
+          borderColor: "red",
+          borderWidth: 3,
+        }}
+      >
+        <Text>Campo de observação</Text>
       </View>
 
-      <View style={styles.footer}>
+      <View
+        style={{
+          ...styles.footer,
+          backgroundColor: "#FDFEFF",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <BackButton placeholder={"Voltar"} style={styles.button} />
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route="/Select1Worker"
-          onBeforeNavigate={() =>
+          route={"/Select2Atividade"}
+          onBeforeNavigate={() => {
             adicionarCampo({
-              lider: liderSelecionado,
-            })
-          }
+              time: inputValue,
+            });
+            concluirApontamento();
+          }}
         />
       </View>
     </View>

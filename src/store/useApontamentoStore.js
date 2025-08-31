@@ -1,8 +1,9 @@
 import { create } from "zustand";
 
 export const useApontamentoStore = create((set) => ({
+  liderApontamentos: [],
   apontamentos: [],
-  apontamentoAtual: {}, // <- rascunho em construção
+  apontamentoAtual: {},
   adicionarCampo: (campo) =>
     set((state) => {
       console.log("state:", state.apontamentoAtual);

@@ -89,12 +89,12 @@ export default function ColaboradorScreen() {
         <ConfirmButton
           placeholder={"Concluir"}
           style={styles.button}
-          route={"/index"}
+          route={"/Select1Worker"}
         />
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/hoursAppointment"}
+          route={"/Select3Equip"}
           onBeforeNavigate={() =>
             adicionarCampo({
               atividade: atividadeSelecionada,
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDFEFF",
     alignItems: "center",
     width: "100%",
-    justifyContent: "space-between",
   },
   body: {
     backgroundColor: "#FDFEFF",

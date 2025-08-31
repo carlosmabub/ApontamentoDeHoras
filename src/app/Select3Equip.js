@@ -1,39 +1,39 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import BackButton from "../components/BackButton";
-import TimeInput from "../components/TimeInput";
 import NextButton from "../components/NextButton";
 import logoImage from "../assets/logoImage.jpg";
+import ModalSelector from "../components/ModalSelector";
 import { useApontamentoStore } from "../store/useApontamentoStore";
 
-export default function Index() {
-  const [inputValue, setInputValue] = useState("");
-  const { adicionarCampo, concluirApontamento } = useApontamentoStore();
+const operacao = ["Solda", "Mecanica", "Pintura"];
 
+const equipamento = ["GT440", "GT125", "FT200DF"];
+
+export default function Index() {
+  const [operacaoSelected, setOperacaoSelected] = useState("");
+  const [equipamentoSelected, setEquipamentoSelected] = useState("");
+  const { adicionarCampo } = useApontamentoStore();
   return (
-    <View
-      style={{
-        ...styles.container,
-        justifyContent: "space-between",
-      }}
-    >
+    <View style={styles.container}>
       <View style={styles.header}>
         <Image style={styles.logo} source={logoImage} />
         <Text style={styles.text}>Sistema de apontamento de horas</Text>
       </View>
 
-      <View style={{ ...styles.body, flex: 1 }}>
-        <TimeInput inputValue={inputValue} setInputValue={setInputValue} />
-      </View>
-      <View
-        style={{
-          ...styles.body,
-          flex: 2,
-          borderColor: "red",
-          borderWidth: 3,
-        }}
-      >
-        <Text>Campo de observação</Text>
+      <View style={styles.body}>
+        <ModalSelector
+          setValue={setOperacaoSelected}
+          data={operacao}
+          value={operacaoSelected}
+          text={"Selecione a Operação:"}
+        />
+        <ModalSelector
+          setValue={setEquipamentoSelected}
+          data={equipamento}
+          value={equipamentoSelected}
+          text={"Selecione o Equipamento:"}
+        />
       </View>
 
       <View
@@ -48,13 +48,13 @@ export default function Index() {
         <NextButton
           placeholder={"Continuar"}
           style={styles.button}
-          route={"/colaborador"}
-          onBeforeNavigate={() => {
+          route={"/Select4Hours"}
+          onBeforeNavigate={() =>
             adicionarCampo({
-              time: inputValue,
-            });
-            concluirApontamento();
-          }}
+              operacao: operacaoSelected,
+              equipamento: equipamentoSelected,
+            })
+          }
         />
       </View>
     </View>
