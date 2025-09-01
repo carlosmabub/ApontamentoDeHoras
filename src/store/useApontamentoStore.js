@@ -34,5 +34,4 @@ export const useApontamentoStore = create((set) => ({
         apontamentoAtual: {},
       };
     }),
-  limparApontamentos: () => set({ apontamentos: [], apontamentoAtual: {} }),
 }));
